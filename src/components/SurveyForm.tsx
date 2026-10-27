@@ -407,11 +407,13 @@ export default function SurveyForm() {
           <div className="space-y-4">
             <div className={headerCardClass}>
               <h1 className="text-2xl sm:text-3xl font-bold mb-4">{FORM_TITLE}</h1>
-              {FORM_DESCRIPTION.map((p, i) => (
-                <p key={i} className="text-sm text-zinc-700 mb-3">
-                  {p}
+                <p className="text-sm text-zinc-700 mb-3">
+                  {FORM_DESCRIPTION[0]}
                 </p>
-              ))}
+                <p className="text-sm text-zinc-700 mb-3 font-bold">
+                  {FORM_DESCRIPTION[1]}
+                </p>
+             
               <p className="mt-4 rounded-lg bg-amber-50 border border-amber-200 px-3 py-2 text-sm text-amber-900">
                 ⏱️ Leva cerca de 3 minutos. Responda até o final e clique em <strong>Enviar</strong> —
                 respostas incompletas não são salvas.
@@ -457,7 +459,7 @@ export default function SurveyForm() {
         {currentScreen.kind === "millennial" && (
           <div className={headerCardClass}>
             <h2 className="text-xl sm:text-2xl font-semibold mb-3">{MILLENNIAL_NOTICE.title}</h2>
-            <p className="text-base text-zinc-700">{MILLENNIAL_NOTICE.text}</p>
+            <p className="text-base font-bold text-zinc-700">{MILLENNIAL_NOTICE.text}</p>
           </div>
         )}
 
