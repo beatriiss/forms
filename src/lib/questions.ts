@@ -3,10 +3,12 @@ export type QuestionType = "text" | "radio" | "checkbox";
 export type Question = {
   id: string;
   title: string;
+  titleY?: string;
   type: QuestionType;
   required: boolean;
   options?: string[];
   allowOther?: boolean;
+  optionLabelsY?: Record<string, string>;
 };
 
 export type Section = {
@@ -51,56 +53,64 @@ export const SECTIONS: Section[] = [
     id: "alcool",
     title: "Consumo de álcool",
     questions: [
-      { id: "alcool_jovem", title: "Quando jovem, você consumia bebidas alcoólicas?", type: "radio", required: true, options: ["Sim", "Não", "Às vezes"] },
-      { id: "alcool_frequencia", title: "Com que frequência você consome bebidas alcoólicas?", type: "radio", required: false, options: ["Nunca", "Raramente", "1 a 2 vezes por mês", "Toda semana", "Várias vezes por semana", "Todos os dias"] },
+      { id: "alcool_jovem", title: "Você consome bebidas alcoólicas?", titleY: "Quando jovem, você consumia bebidas alcoólicas?", type: "radio", required: true, options: ["Sim", "Não", "Às vezes"] },
+      { id: "alcool_frequencia", title: "Com que frequência você consome bebidas alcoólicas?", titleY: "Com que frequência você consumia bebidas alcoólicas?", type: "radio", required: false, options: ["Nunca", "Raramente", "1 a 2 vezes por mês", "Toda semana", "Várias vezes por semana", "Todos os dias"] },
     ],
   },
   {
     id: "tabaco",
     title: "Tabaco e outras substâncias",
     questions: [
-      { id: "fuma", title: "Você fuma?", type: "radio", required: true, options: ["Não", "Cigarro comum", "Vape", "Narguilé", "Mais de um tipo"] },
-      { id: "percepcao_substancias", title: "Na sua percepção, o uso de álcool, cigarro/vape e outras drogas entre jovens da sua idade está:", type: "radio", required: true, options: ["Diminuindo", "Estável", "Aumentando um pouco", "Aumentando muito"] },
+      { id: "fuma", title: "Você fuma?", titleY: "Você fumava?", type: "radio", required: true, options: ["Não", "Cigarro comum", "Vape", "Narguilé", "Mais de um tipo"] },
+      { id: "percepcao_substancias", title: "Na sua percepção, o uso de álcool, cigarro/vape e outras drogas entre jovens da sua idade está:", titleY: "Na sua percepção, o uso de álcool, cigarro/vape e outras drogas entre os jovens da sua época estava:", type: "radio", required: true, options: ["Diminuindo", "Estável", "Aumentando um pouco", "Aumentando muito"] },
     ],
   },
   {
     id: "sexualidade",
     title: "Sexualidade e relacionamentos",
     questions: [
-      { id: "relacoes_sexuais", title: "Você já teve relações sexuais?", type: "radio", required: true, options: ["Sim", "Não", "Prefiro não responder"] },
-      { id: "frequencia_sexual", title: "Com que frequência você tem relações sexuais?", type: "radio", required: true, options: ["Nunca", "Raramente", "1 a 3 vezes por mês", "1 a 2 vezes por semana", "3 ou mais vezes por semana", "Prefiro não responder"] },
+      { id: "relacoes_sexuais", title: "Você já teve relações sexuais?", titleY: "Nessa época, você já tinha tido relações sexuais?", type: "radio", required: true, options: ["Sim", "Não", "Prefiro não responder"] },
+      { id: "frequencia_sexual", title: "Com que frequência você tem relações sexuais?", titleY: "Com que frequência você tinha relações sexuais?", type: "radio", required: true, options: ["Nunca", "Raramente", "1 a 3 vezes por mês", "1 a 2 vezes por semana", "3 ou mais vezes por semana", "Prefiro não responder"] },
     ],
   },
   {
     id: "social",
     title: "Vida social",
     questions: [
-      { id: "sai_noite", title: "Com que frequência você sai à noite?", type: "radio", required: true, options: ["Nunca", "Raramente", "1 vez por mês", "1 vez por semana", "2 ou mais vezes por semana"] },
-      { id: "lugares", title: "Quais lugares você costuma frequentar?", type: "checkbox", required: true, options: ["Bares", "Baladas", "Casa de amigos", "Shopping", "Restaurantes", "Parques e praças", "Eventos e shows", "Praia"], allowOther: true },
-      { id: "vontade_sair", title: "Você sente que sua vontade de sair diminuiu?", type: "radio", required: true, options: ["Sim, bastante", "Sim, um pouco", "Continua igual", "Aumentou"] },
+      { id: "sai_noite", title: "Com que frequência você sai à noite?", titleY: "Com que frequência você saía à noite?", type: "radio", required: true, options: ["Nunca", "Raramente", "1 vez por mês", "1 vez por semana", "2 ou mais vezes por semana"] },
+      { id: "lugares", title: "Quais lugares você costuma frequentar?", titleY: "Quais lugares você costumava frequentar?", type: "checkbox", required: true, options: ["Bares", "Baladas", "Casa de amigos", "Shopping", "Restaurantes", "Parques e praças", "Eventos e shows", "Praia"], allowOther: true },
+      { id: "vontade_sair", title: "Você sente que sua vontade de sair diminuiu?", titleY: "Você sentia que sua vontade de sair tinha diminuído?", type: "radio", required: true, options: ["Sim, bastante", "Sim, um pouco", "Continua igual", "Aumentou"], optionLabelsY: { "Continua igual": "Continuava igual" } },
     ],
   },
   {
     id: "hobbies",
     title: "Lifestyle / hobbies",
     questions: [
-      { id: "atividades", title: "Quais atividades fazem parte da sua rotina?", type: "checkbox", required: true, options: ["Academia", "Esportes", "Jogos", "Séries e filmes", "Leitura", "Estudos", "Trabalho", "Música", "Redes sociais", "Passeios com amigos"], allowOther: true },
-      { id: "atividade_fisica", title: "Quantos dias por semana você pratica atividade física?", type: "radio", required: true, options: ["Nenhum", "1 a 2 dias", "3 a 4 dias", "5 a 7 dias"] },
-      { id: "religiao", title: "Você pratica alguma atividade religiosa ou espiritual?", type: "radio", required: true, options: ["Sim, com frequência", "Sim, ocasionalmente", "Sou espiritualizado(a), mas sem religião", "Não pratico"] },
+      { id: "atividades", title: "Quais atividades fazem parte da sua rotina?", titleY: "Quais atividades faziam parte da sua rotina?", type: "checkbox", required: true, options: ["Academia", "Esportes", "Jogos", "Séries e filmes", "Leitura", "Estudos", "Trabalho", "Música", "Redes sociais", "Passeios com amigos"], allowOther: true },
+      { id: "atividade_fisica", title: "Quantos dias por semana você pratica atividade física?", titleY: "Quantos dias por semana você praticava atividade física?", type: "radio", required: true, options: ["Nenhum", "1 a 2 dias", "3 a 4 dias", "5 a 7 dias"] },
+      { id: "religiao", title: "Você pratica alguma atividade religiosa ou espiritual?", titleY: "Você praticava alguma atividade religiosa ou espiritual?", type: "radio", required: true, options: ["Sim, com frequência", "Sim, ocasionalmente", "Sou espiritualizado(a), mas sem religião", "Não pratico"], optionLabelsY: { "Sou espiritualizado(a), mas sem religião": "Era espiritualizado(a), mas sem religião", "Não pratico": "Não praticava" } },
     ],
   },
   {
     id: "redes",
     title: "Redes sociais e consumo",
     questions: [
-      { id: "influencia_redes", title: "As redes sociais influenciam na maneira que você vive?", type: "radio", required: true, options: ["Muito", "Um pouco", "Pouco", "Nada"] },
-      { id: "conteudos", title: "Quais conteúdos mais influenciam seus hábitos?", type: "checkbox", required: true, options: ["Fitness e saúde", "Alimentação", "Moda e beleza", "Humor e memes", "Influenciadores", "Notícias", "Games", "Nenhum"], allowOther: true },
-      { id: "zero_acucar", title: "Com que frequência você costuma consumir alimentos/bebidas zero açúcar?", type: "radio", required: true, options: ["Nunca", "Raramente", "Algumas vezes por semana", "Todos os dias"] },
-      { id: "motivo_zero", title: "Qual é o principal motivo para escolher esses produtos?", type: "radio", required: true, options: ["Saúde", "Emagrecimento", "Estética", "Diabetes ou restrição médica", "Gosto", "Influência das redes sociais", "Não consumo"], allowOther: true },
+      { id: "influencia_redes", title: "As redes sociais influenciam na maneira que você vive?", titleY: "As redes sociais influenciavam a maneira como você vivia?", type: "radio", required: true, options: ["Muito", "Um pouco", "Pouco", "Nada"] },
+      { id: "conteudos", title: "Quais conteúdos mais influenciam seus hábitos?", titleY: "Quais conteúdos mais influenciavam seus hábitos?", type: "checkbox", required: true, options: ["Fitness e saúde", "Alimentação", "Moda e beleza", "Humor e memes", "Influenciadores", "Notícias", "Games", "Nenhum"], allowOther: true },
+      { id: "zero_acucar", title: "Com que frequência você costuma consumir alimentos/bebidas zero açúcar?", titleY: "Com que frequência você costumava consumir alimentos/bebidas zero açúcar?", type: "radio", required: true, options: ["Nunca", "Raramente", "Algumas vezes por semana", "Todos os dias"] },
+      { id: "motivo_zero", title: "Qual é o principal motivo para escolher esses produtos?", titleY: "Qual era o principal motivo para escolher esses produtos?", type: "radio", required: true, options: ["Saúde", "Emagrecimento", "Estética", "Diabetes ou restrição médica", "Gosto", "Influência das redes sociais", "Não consumo"], allowOther: true, optionLabelsY: { "Não consumo": "Não consumia" } },
     ],
   },
 ];
 
 export const ALL_QUESTIONS: Question[] = SECTIONS.flatMap((section) => section.questions);
+
+export function questionTitle(q: Question, generation: Generation | null): string {
+  return generation === "Y" && q.titleY ? q.titleY : q.title;
+}
+
+export function optionLabel(q: Question, option: string, generation: Generation | null): string {
+  return generation === "Y" ? (q.optionLabelsY?.[option] ?? option) : option;
+}
 
 export type Answers = Record<string, string | string[]>;

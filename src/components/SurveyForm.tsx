@@ -8,6 +8,8 @@ import {
   GEN_OPTIONS,
   MILLENNIAL_NOTICE,
   OTHER_PREFIX,
+  optionLabel,
+  questionTitle,
   SECTIONS,
   type Answers,
   type Generation,
@@ -264,7 +266,7 @@ export default function SurveyForm() {
           onChange={(e) => handleOtherTextChange(q, e.target.value)}
           maxLength={200}
           className={otherInputClass}
-          aria-label={`Outro: ${q.title}`}
+          aria-label={`Outro: ${questionTitle(q, generation)}`}
         />
       </div>
     );
@@ -283,7 +285,7 @@ export default function SurveyForm() {
       >
         <fieldset aria-invalid={questionError ? true : undefined}>
           <legend className="block text-base font-medium mb-4">
-            {q.title} {q.required && <span className="text-red-500">*</span>}
+            {questionTitle(q, generation)} {q.required && <span className="text-red-500">*</span>}
           </legend>
 
           {q.type === "text" && (
@@ -294,7 +296,7 @@ export default function SurveyForm() {
               onChange={(e) => updateAnswer(q, e.target.value)}
               maxLength={200}
               placeholder="Sua resposta"
-              aria-label={q.title}
+              aria-label={questionTitle(q, generation)}
               aria-invalid={questionError ? true : undefined}
               className="w-full sm:w-2/3 border-b border-zinc-300 bg-transparent px-1 py-2 text-sm outline-none focus:border-violet-600"
             />
@@ -312,7 +314,7 @@ export default function SurveyForm() {
                     onChange={() => updateAnswer(q, opt)}
                     className={choiceInputClass}
                   />
-                  <span>{opt}</span>
+                  <span>{optionLabel(q, opt, generation)}</span>
                 </label>
               ))}
               {q.allowOther &&
@@ -354,7 +356,7 @@ export default function SurveyForm() {
                     onChange={(e) => handleCheckboxChange(q, opt, e.target.checked)}
                     className={choiceInputClass}
                   />
-                  <span>{opt}</span>
+                  <span>{optionLabel(q, opt, generation)}</span>
                 </label>
               ))}
               {q.allowOther &&
