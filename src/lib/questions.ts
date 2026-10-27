@@ -33,7 +33,7 @@ export const FORM_DESCRIPTION: string[] = [
 ];
 
 export const MILLENNIAL_NOTICE = {
-  title: "Atenção, Geração Millennials",
+  title: "Atenção, Millennials!",
   text: "Responda às próximas perguntas de acordo com a sua vida quando você era jovem, entre os 18 e os 20 e poucos anos.",
 };
 
@@ -62,7 +62,7 @@ export const SECTIONS: Section[] = [
     title: "Tabaco e outras substâncias",
     questions: [
       { id: "fuma", title: "Você fuma?", titleY: "Você fumava?", type: "radio", required: true, options: ["Não", "Cigarro comum", "Vape", "Narguilé", "Mais de um tipo"] },
-      { id: "percepcao_substancias", title: "Na sua percepção, o uso de álcool, cigarro/vape e outras drogas entre jovens da sua idade está:", titleY: "Na sua percepção, o uso de álcool, cigarro/vape e outras drogas entre os jovens da sua época estava:", type: "radio", required: true, options: ["Diminuindo", "Estável", "Aumentando um pouco", "Aumentando muito"] },
+      { id: "percepcao_substancias", title: "Na sua percepção, o uso de álcool, cigarro/vape e outras drogas entre jovens da sua idade está:", titleY: "Na sua percepção, o uso de álcool, cigarro/vape e outras drogas entre os jovens da sua época:", type: "radio", required: true, options: ["Diminuiu", "Se manteve estável", "Aumentou um pouco", "Aumentou muito"] },
     ],
   },
   {
